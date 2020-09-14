@@ -40,5 +40,35 @@ namespace WebAddressbookTest
             driver.FindElement(By.Name("submit")).Click();
             return this;
         }
+
+        public ContactHelper SelectContact(int index)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
+        }
+
+        public ContactHelper RemoveContact()
+        {
+            driver.FindElement(By.XPath("//input[@value = 'Delete']")).Click();
+            return this;
+        }
+
+        public ContactHelper DeleteConfirmation()
+        {
+            driver.SwitchTo().Alert().Accept();
+            return this;
+        }
+
+        public ContactHelper EditContact(int index)
+        {
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + index + "]")).Click();
+            return this;
+        }
+
+        public ContactHelper UpdateContact()
+        {
+            driver.FindElement(By.XPath("//input[@value = 'Update']")).Click();
+            return this;
+        }
     }
 }
