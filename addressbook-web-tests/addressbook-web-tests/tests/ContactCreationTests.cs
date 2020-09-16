@@ -12,11 +12,7 @@ namespace WebAddressbookTest
             contact.Company = "cc";
             contact.Email = "qwe";
             contact.MobilePhone = "123";
-            applicationManager.Contacts
-                .InitContactCreation()
-                .FillContactForm(contact)
-                .SubmitContactCreation();
-            applicationManager.Navigator.ReturnToHomePage();
+            applicationManager.Contacts.CreateContactWholeProcess(contact);
         }
     }
 }

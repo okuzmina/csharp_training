@@ -10,12 +10,7 @@ namespace WebAddressbookTest
 
         public void ContactRemovalTest()
         {
-            applicationManager.Navigator.OpenHomePage();
-            applicationManager.Contacts
-                .SelectContact(1)
-                .RemoveContact()
-                .DeleteConfirmation();
-            applicationManager.Navigator.ReturnToHomePage();
+            applicationManager.Contacts.RemoveContactWholeProcess(1);
         }
     }
 }

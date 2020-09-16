@@ -9,16 +9,10 @@ namespace WebAddressbookTest
 
         public void GroupEditionTest()
         {
-            applicationManager.Navigator.GoToGroupsPage();
             GroupData group = new GroupData("edit");
             group.Header = "edit";
             group.Footer = "edit";
-            applicationManager.Groups
-                .SelectGroup(2)
-                .EditGroup()
-                .FillGroupForm(group)
-                .UpdateGroup()
-                .ReturnToGroupsPage();
+            applicationManager.Groups.EditGroupWholeProcess(2, group);
         }
     }
 }

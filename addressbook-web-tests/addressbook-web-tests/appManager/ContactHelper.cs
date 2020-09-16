@@ -4,9 +4,36 @@ namespace WebAddressbookTest
 {
     public class ContactHelper : HelperBase
     {
-        public ContactHelper(IWebDriver driver)
-            : base(driver)
+        public ContactHelper(ApplicationManager manager)
+            : base(manager)
         {
+        }
+
+        public ContactHelper CreateContactWholeProcess(ContactData contact)
+        {
+            InitContactCreation();
+            FillContactForm(contact);
+            SubmitContactCreation();
+            manager.Navigator.ReturnToHomePage();
+            return this;
+        }
+
+        public ContactHelper EditContactWholeProcess(int index, ContactData contact)
+        {
+            EditContact(index);
+            FillContactForm(contact);
+            UpdateContact();
+            manager.Navigator.ReturnToHomePage();
+            return this;
+        }
+
+        public ContactHelper RemoveContactWholeProcess(int index)
+        {
+            manager.Navigator.OpenHomePage();
+            SelectContact(index);
+            RemoveContact();
+            manager.Navigator.ReturnToHomePage();
+            return this;
         }
 
         public ContactHelper InitContactCreation()
@@ -50,11 +77,6 @@ namespace WebAddressbookTest
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value = 'Delete']")).Click();
-            return this;
-        }
-
-        public ContactHelper DeleteConfirmation()
-        {
             driver.SwitchTo().Alert().Accept();
             return this;
         }

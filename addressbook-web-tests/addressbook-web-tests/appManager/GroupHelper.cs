@@ -4,9 +4,39 @@ namespace WebAddressbookTest
 {
     public class GroupHelper : HelperBase
     {
-        public GroupHelper(IWebDriver driver)
-            : base(driver)
+        public GroupHelper(ApplicationManager manager)
+            : base(manager)
         {
+        }
+
+        public GroupHelper CreateGroupWholeProcess(GroupData group)
+        {
+            manager.Navigator.GoToGroupsPage();
+            InitGroupCreation();
+            FillGroupForm(group);
+            SubmitGroupCreation();
+            ReturnToGroupsPage();
+            return this;
+        }
+
+        public GroupHelper EditGroupWholeProcess(int index, GroupData group)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(index);
+            EditGroup();
+            FillGroupForm(group);
+            UpdateGroup();
+            ReturnToGroupsPage();
+            return this;
+        }
+
+        public GroupHelper RemoveGroupWholeProcess(int index)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(index);
+            RemoveGroup();
+            ReturnToGroupsPage();
+            return this;
         }
 
         public GroupHelper InitGroupCreation()
@@ -64,5 +94,6 @@ namespace WebAddressbookTest
             driver.FindElement(By.Name("update")).Click();
             return this;
         }
+
     }
 }
