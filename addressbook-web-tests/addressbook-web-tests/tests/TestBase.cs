@@ -6,9 +6,9 @@ namespace WebAddressbookTest
     {
         protected ApplicationManager applicationManager;
         [SetUp]
-        public void SetupTest()
+        public void SetupApplicationManager()
         {
-            applicationManager = TestSuiteFixture.app;
+            applicationManager = ApplicationManager.GetInstance();
         }
     }
 }
