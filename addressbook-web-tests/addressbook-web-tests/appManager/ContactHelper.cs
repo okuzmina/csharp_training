@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 
 namespace WebAddressbookTest
 {
@@ -60,6 +61,11 @@ namespace WebAddressbookTest
 
         public ContactHelper SelectContact(int index)
         {
+            if (!IsContactExist())
+            {
+                ContactData contact = new ContactData("pre-created", "pre-created");
+                CreateContactWholeProcess(contact);
+            }
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
         }
@@ -73,8 +79,18 @@ namespace WebAddressbookTest
 
         public ContactHelper EditContact(int index)
         {
+            if (!IsContactExist())
+            {
+                ContactData contact = new ContactData("pre-created", "pre-created");
+                CreateContactWholeProcess(contact);
+            }
             driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + index + "]")).Click();
             return this;
+        }
+
+        public bool IsContactExist()
+        {
+            return IsElementPresent(By.Name("selected[]"));
         }
 
         public ContactHelper UpdateContact()

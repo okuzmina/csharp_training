@@ -12,7 +12,7 @@ namespace WebAddressbookTest
             GroupData group = new GroupData("edit");
             group.Header = "edit";
             group.Footer = "edit";
-            applicationManager.Groups.EditGroupWholeProcess(2, group);
+            applicationManager.Groups.EditGroupWholeProcess(1, group);
         }
     }
 }

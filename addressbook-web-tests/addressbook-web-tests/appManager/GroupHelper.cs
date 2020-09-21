@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 
 namespace WebAddressbookTest
 {
@@ -67,8 +68,18 @@ namespace WebAddressbookTest
 
         public GroupHelper SelectGroup(int index)
         {
+            if (!IsGrouptExist())
+            {
+                GroupData group = new GroupData("pre-created");
+                CreateGroupWholeProcess(group);
+            }
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
+        }
+
+        private bool IsGrouptExist()
+        {
+            return IsElementPresent(By.Name("selected[]"));
         }
 
         public GroupHelper RemoveGroup()

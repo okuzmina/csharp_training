@@ -10,7 +10,7 @@ namespace WebAddressbookTest
         public void ContactEditionTest()
         {
             ContactData contact = new ContactData("edit", "edit");
-            applicationManager.Contacts.EditContactWholeProcess(2, contact);
+            applicationManager.Contacts.EditContactWholeProcess(1, contact);
         }
     }
 }
