@@ -11,12 +11,7 @@ namespace WebAddressbookTest
         {
             ContactData contact = new ContactData("edit", "edit");
 
-            if (!applicationManager.Contacts.IsContactExist())
-            {
-                ContactData contactNew = new ContactData("pre-created", "pre-created");
-                applicationManager.Contacts.CreateContactWholeProcess(contactNew);
-            }
-
+            applicationManager.Contacts.CheckExistingCreateIfNot();
             applicationManager.Contacts.EditContactWholeProcess(1, contact);
         }
     }

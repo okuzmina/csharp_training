@@ -1,8 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
-using System.Threading;
+﻿using OpenQA.Selenium;
 
 namespace WebAddressbookTest
 {

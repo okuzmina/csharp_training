@@ -1,5 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace WebAddressbookTest
 {
@@ -95,5 +94,14 @@ namespace WebAddressbookTest
             return this;
         }
 
+        public GroupHelper CheckExistngCreateIfNot()
+        {
+            if (!IsGrouptExist())
+            {
+                GroupData groupNew = new GroupData("pre-created");
+                CreateGroupWholeProcess(groupNew);
+            }
+            return this;
+        }
     }
 }
