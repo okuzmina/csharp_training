@@ -10,6 +10,12 @@ namespace WebAddressbookTest
 
         public void ContactRemovalTest()
         {
+            if (!applicationManager.Contacts.IsContactExist())
+            {
+                ContactData contactNew = new ContactData("pre-created", "pre-created");
+                applicationManager.Contacts.CreateContactWholeProcess(contactNew);
+            }
+
             applicationManager.Contacts.RemoveContactWholeProcess(1);
         }
     }

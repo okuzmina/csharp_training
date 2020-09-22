@@ -12,6 +12,13 @@ namespace WebAddressbookTest
             GroupData group = new GroupData("edit");
             group.Header = "edit";
             group.Footer = "edit";
+
+            if (!applicationManager.Groups.IsGrouptExist())
+            {
+                GroupData groupNew = new GroupData("pre-created");
+                applicationManager.Groups.CreateGroupWholeProcess(groupNew);
+            }
+
             applicationManager.Groups.EditGroupWholeProcess(1, group);
         }
     }

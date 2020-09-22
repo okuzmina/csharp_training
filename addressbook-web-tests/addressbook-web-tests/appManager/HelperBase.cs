@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace WebAddressbookTest
 {
@@ -34,6 +36,12 @@ namespace WebAddressbookTest
             {
                 return false;
             }
+        }
+
+        public void WaitElementIsVisible(By locator)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(50));
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(locator));
         }
     }
 }
