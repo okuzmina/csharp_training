@@ -12,7 +12,7 @@ namespace WebAddressbookTest
             ContactData contact = new ContactData("edit", "edit");
 
             applicationManager.Contacts.CheckExistingCreateIfNot();
-            applicationManager.Contacts.EditContactWholeProcess(1, contact);
+            applicationManager.Contacts.EditContactWholeProcess(0, contact);
         }
     }
 }

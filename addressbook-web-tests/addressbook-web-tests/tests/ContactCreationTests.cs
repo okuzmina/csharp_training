@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace WebAddressbookTest
 {
@@ -12,7 +13,11 @@ namespace WebAddressbookTest
             contact.Company = "cc";
             contact.Email = "qwe";
             contact.MobilePhone = "123";
+            List<ContactData> oldContacts = applicationManager.Contacts.GetContactListLastNames();
+
             applicationManager.Contacts.CreateContactWholeProcess(contact);
+            List<ContactData> newContacts = applicationManager.Contacts.GetContactListLastNames();
+            Assert.AreEqual(oldContacts.Count+1, newContacts.Count);
         }
     }
 }

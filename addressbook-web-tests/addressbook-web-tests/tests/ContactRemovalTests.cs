@@ -11,7 +11,7 @@ namespace WebAddressbookTest
         public void ContactRemovalTest()
         {
             applicationManager.Contacts.CheckExistingCreateIfNot();
-            applicationManager.Contacts.RemoveContactWholeProcess(1);
+            applicationManager.Contacts.RemoveContactWholeProcess(0);
         }
     }
 }

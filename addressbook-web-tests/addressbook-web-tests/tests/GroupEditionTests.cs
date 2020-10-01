@@ -14,7 +14,7 @@ namespace WebAddressbookTest
             group.Footer = "edit";
 
             applicationManager.Groups.CheckExistngCreateIfNot();
-            applicationManager.Groups.EditGroupWholeProcess(1, group);
+            applicationManager.Groups.EditGroupWholeProcess(0, group);
         }
     }
 }
