@@ -18,7 +18,10 @@ namespace WebAddressbookTest
             applicationManager.Groups.CreateGroupWholeProcess(group);
 
             List<GroupData> newGroups = applicationManager.Groups.GetGroupList();
-            Assert.AreEqual(oldGroups.Count+1, newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }

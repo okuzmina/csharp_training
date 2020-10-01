@@ -17,7 +17,12 @@ namespace WebAddressbookTest
 
             applicationManager.Contacts.CreateContactWholeProcess(contact);
             List<ContactData> newContacts = applicationManager.Contacts.GetContactListLastNames();
-            Assert.AreEqual(oldContacts.Count+1, newContacts.Count);
+
+            oldContacts.Add(contact);
+            oldContacts.Sort();
+            newContacts.Sort();
+
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }

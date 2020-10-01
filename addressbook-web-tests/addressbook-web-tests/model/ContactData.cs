@@ -2,7 +2,7 @@
 
 namespace WebAddressbookTest
 {
-    public class ContactData
+    public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string firstName;
         private string lastName;
@@ -34,6 +34,36 @@ namespace WebAddressbookTest
         public ContactData(string lastName)
         {
             this.lastName = lastName;
+        }
+
+
+        public bool Equals(ContactData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return LastName == other.LastName;
+        }
+
+        public override int GetHashCode()
+        {
+            return LastName.GetHashCode();
+        }
+
+        public int CompareTo(ContactData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+
+            return LastName.CompareTo(other.LastName);
         }
 
         public string FirstName

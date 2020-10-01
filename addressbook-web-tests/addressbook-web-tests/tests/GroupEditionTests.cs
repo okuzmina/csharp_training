@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace WebAddressbookTest
 {
@@ -14,7 +15,16 @@ namespace WebAddressbookTest
             group.Footer = "edit";
 
             applicationManager.Groups.CheckExistngCreateIfNot();
+            List<GroupData> oldGroups = applicationManager.Groups.GetGroupList();
+
             applicationManager.Groups.EditGroupWholeProcess(0, group);
+            List<GroupData> newGroups = applicationManager.Groups.GetGroupList();
+
+            oldGroups[0].Name = group.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }
