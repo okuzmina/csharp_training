@@ -37,14 +37,16 @@ namespace WebAddressbookTest
             return this;
         }
 
-        public List<ContactData> GetContactListLastNames()
+        public List<ContactData> GetContactList()
         {
             List<ContactData> contacts = new List<ContactData>();
             manager.Navigator.OpenHomePage();
-            ICollection<IWebElement> elementsLastNames = driver.FindElements(By.XPath("//tbody/tr/td[2]"));
-            foreach (IWebElement lastName in elementsLastNames)
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name = 'entry']"));
+            foreach (IWebElement element in elements)
             {
-                contacts.Add(new ContactData(lastName.Text));
+                IWebElement lastName = element.FindElement(By.XPath("//tr[@name = 'entry']/td[2]"));
+                IWebElement firstName = element.FindElement(By.XPath("//tr[@name = 'entry']/td[3]"));
+                contacts.Add(new ContactData(firstName.Text, lastName.Text));
             }
             return contacts;
         }

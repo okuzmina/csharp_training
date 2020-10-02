@@ -13,10 +13,10 @@ namespace WebAddressbookTest
             contact.Company = "cc";
             contact.Email = "qwe";
             contact.MobilePhone = "123";
-            List<ContactData> oldContacts = applicationManager.Contacts.GetContactListLastNames();
+            List<ContactData> oldContacts = applicationManager.Contacts.GetContactList();
 
             applicationManager.Contacts.CreateContactWholeProcess(contact);
-            List<ContactData> newContacts = applicationManager.Contacts.GetContactListLastNames();
+            List<ContactData> newContacts = applicationManager.Contacts.GetContactList();
 
             oldContacts.Add(contact);
             oldContacts.Sort();
