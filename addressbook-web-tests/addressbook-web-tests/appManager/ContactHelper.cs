@@ -44,8 +44,8 @@ namespace WebAddressbookTest
             ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name = 'entry']"));
             foreach (IWebElement element in elements)
             {
-                IWebElement lastName = element.FindElement(By.XPath("//tr[@name = 'entry']/td[2]"));
-                IWebElement firstName = element.FindElement(By.XPath("//tr[@name = 'entry']/td[3]"));
+                IWebElement lastName = element.FindElement(By.XPath("./td[2]"));
+                IWebElement firstName = element.FindElement(By.XPath("./td[3]"));
                 contacts.Add(new ContactData(firstName.Text, lastName.Text));
             }
             return contacts;
