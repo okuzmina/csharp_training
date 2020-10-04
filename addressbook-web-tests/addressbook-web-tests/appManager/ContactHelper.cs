@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 
 namespace WebAddressbookTest
@@ -28,6 +29,11 @@ namespace WebAddressbookTest
             return this;
         }
 
+        public int GetContactCount()
+        {
+            return driver.FindElements(By.XPath("//tr[@name = 'entry']")).Count;
+        }
+
         public ContactHelper RemoveContactWholeProcess(int index)
         {
             manager.Navigator.OpenHomePage();
@@ -48,9 +54,13 @@ namespace WebAddressbookTest
                 ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name = 'entry']"));
                 foreach (IWebElement element in elements)
                 {
+                    
                     IWebElement lastName = element.FindElement(By.XPath("./td[2]"));
                     IWebElement firstName = element.FindElement(By.XPath("./td[3]"));
-                    contactCache.Add(new ContactData(firstName.Text, lastName.Text));
+
+                    contactCache.Add(new ContactData(firstName.Text, lastName.Text){
+                        Id = element.FindElement(By.Name("selected[]")).GetAttribute("value")
+                    });
                 }
             }
 

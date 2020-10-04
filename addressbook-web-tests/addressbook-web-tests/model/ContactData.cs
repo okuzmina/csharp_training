@@ -27,8 +27,8 @@ namespace WebAddressbookTest
 
         public ContactData(string firstName, string lastName)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
+            FirstName = firstName;
+            LastName = lastName;
         }
 
         public bool Equals(ContactData other)
@@ -75,244 +75,46 @@ namespace WebAddressbookTest
             return LastName.CompareTo(other.LastName);
         }
 
-        public string FirstName
-        {
-            get
-            {
-                return firstName;
-            }
-            set
-            {
-                firstName = value;
-            }
-        }
+        public string FirstName { get; set; }
 
-        public string LastName
-        {
-            get
-            {
-                return lastName;
-            }
-            set
-            {
-                lastName = value;
-            }
-        }
+        public string LastName { get; set; }
 
-        public string MiddleName
-        {
-            get
-            {
-                return middleName;
-            }
-            set
-            {
-                middleName = value;
-            }
-        }
+        public string MiddleName { get; set; }
 
-        public string Nickname
-        {
-            get
-            {
-                return nickname;
-            }
-            set
-            {
-                nickname = value;
-            }
-        }
+        public string Nickname { get; set; }
 
-        public string Title
-        {
-            get
-            {
-                return title;
-            }
-            set
-            {
-                title = value;
-            }
-        }
+        public string Title { get; set; }
 
-        public string Company
-        {
-            get
-            {
-                return company;
-            }
-            set
-            {
-                company = value;
-            }
-        }
+        public string Company { get; set; }
 
-        public string Address
-        {
-            get
-            {
-                return address;
-            }
-            set
-            {
-                address = value;
-            }
-        }
+        public string Address { get; set; }
 
-        public string HomePhone
-        {
-            get
-            {
-                return homePhone;
-            }
-            set
-            {
-                homePhone = value;
-            }
-        }
+        public string HomePhone { get; set; }
 
-        public string MobilePhone
-        {
-            get
-            {
-                return mobilePhone;
-            }
-            set
-            {
-                mobilePhone = value;
-            }
-        }
+        public string MobilePhone { get; set; }
 
-        public string WorkPhone
-        {
-            get
-            {
-                return workPhone;
-            }
-            set
-            {
-                workPhone = value;
-            }
-        }
+        public string WorkPhone { get; set; }
 
-        public string Fax
-        {
-            get
-            {
-                return fax;
-            }
-            set
-            {
-                fax = value;
-            }
-        }
+        public string Fax { get; set; }
 
-        public string Email
-        {
-            get
-            {
-                return email;
-            }
-            set
-            {
-                email = value;
-            }
-        }
+        public string Email { get; set; }
 
-        public string Email2
-        {
-            get
-            {
-                return email2;
-            }
-            set
-            {
-                email2 = value;
-            }
-        }
+        public string Email2 { get; set; }
 
-        public string Email3
-        {
-            get
-            {
-                return email3;
-            }
-            set
-            {
-                email3 = value;
-            }
-        }
+        public string Email3 { get; set; }
 
-        public string Homepage
-        {
-            get
-            {
-                return homepage;
-            }
-            set
-            {
-                homepage = value;
-            }
-        }
+        public string Homepage { get; set; }
 
-        public DateTime Birthday
-        {
-            get
-            {
-                return birthday;
-            }
-            set
-            {
-                birthday = value;
-            }
-        }
+        public DateTime Birthday { get; set; }
 
-        public DateTime Anniversary
-        {
-            get
-            {
-                return anniversary;
-            }
-            set
-            {
-                anniversary = value;
-            }
-        }
+        public DateTime Anniversary { get; set; }
 
-        public string SecondaryAddress
-        {
-            get
-            {
-                return secondaryAddress;
-            }
-            set
-            {
-                secondaryAddress = value;
-            }
-        }
+        public string SecondaryAddress { get; set; }
 
-        public string Home
-        {
-            get
-            {
-                return home;
-            }
-            set
-            {
-                home = value;
-            }
-        }
+        public string Home { get; set; }
 
-        public string Notes
-        {
-            get
-            {
-                return notes;
-            }
-            set
-            {
-                notes = value;
-            }
-        }
+        public string Notes { get; set; }
+
+        public string Id { get; set; }
     }
 }
