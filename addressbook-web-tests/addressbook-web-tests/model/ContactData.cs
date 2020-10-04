@@ -24,6 +24,8 @@ namespace WebAddressbookTest
         private string secondaryAddress = "";
         private string home = "";
         private string notes = "";
+        private string allPhones;
+        private string allEmails;
 
         public ContactData(string firstName, string lastName)
         {
@@ -95,6 +97,38 @@ namespace WebAddressbookTest
 
         public string WorkPhone { get; set; }
 
+        public string AllPhones
+        {
+            get
+            {
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return (CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)).Trim();
+                }
+            }
+            set
+            {
+                allPhones = value;
+            }
+        }
+
+        private string CleanUp(string row)
+        {
+            if (row == null || row == "")
+            {
+                return "";
+            }
+            return row
+                .Replace(" ", "")
+                .Replace("-", "")
+                .Replace("(", "")
+                .Replace(")", "") + "\r\n";
+        }
+
         public string Fax { get; set; }
 
         public string Email { get; set; }
@@ -102,6 +136,25 @@ namespace WebAddressbookTest
         public string Email2 { get; set; }
 
         public string Email3 { get; set; }
+
+        public string AllEmails
+        {
+            get
+            {
+                if (allEmails != null)
+                {
+                    return allEmails;
+                }
+                else
+                {
+                    return (CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim;
+                }
+            }
+            set
+            {
+                allEmails = value;
+            }
+        }
 
         public string Homepage { get; set; }
 

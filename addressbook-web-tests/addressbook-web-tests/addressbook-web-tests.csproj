@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="tests\AuthTestBase.cs" />
     <Compile Include="tests\ContactEditionTests.cs" />
+    <Compile Include="tests\ContactInformationTests.cs" />
     <Compile Include="tests\GroupEditionTests.cs" />
     <Compile Include="tests\ContactRemovalTests.cs" />
     <Compile Include="tests\GroupRemovalTests.cs" />
