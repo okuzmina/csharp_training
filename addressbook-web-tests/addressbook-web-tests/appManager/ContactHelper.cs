@@ -20,7 +20,7 @@ namespace WebAddressbookTest
             return this;
         }
 
-        public ContactData GetContactInformationFromEditForm(int index)
+        public ContactData GetContactInformationFromTable(int index)
         {
             manager.Navigator.OpenHomePage();
             IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index]
@@ -39,7 +39,16 @@ namespace WebAddressbookTest
             };
         }
 
-        public ContactData GetContactInformationFromTable(int index)
+        public string GetContactInformationIndividualView(int index)
+        {
+            manager.Navigator.OpenHomePage();
+            ViewContact(index);
+
+            string contactDetails = driver.FindElement(By.Id("content")).Text;
+            return contactDetails;
+        }
+
+        public ContactData GetContactInformationFromEditForm(int index)
         {
             manager.Navigator.OpenHomePage();
             EditContact(index);
@@ -155,6 +164,12 @@ namespace WebAddressbookTest
         public ContactHelper EditContact(int index)
         {
             driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + (index+1) + "]")).Click();
+            return this;
+        }
+
+        public ContactHelper ViewContact(int index)
+        {
+            driver.FindElement(By.XPath("(//img[@alt='Details'])[" + (index + 1) + "]")).Click();
             return this;
         }
 

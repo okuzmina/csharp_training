@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTest
 {
@@ -26,6 +27,7 @@ namespace WebAddressbookTest
         private string notes = "";
         private string allPhones;
         private string allEmails;
+        private string allDetails;
 
         public ContactData(string firstName, string lastName)
         {
@@ -122,11 +124,15 @@ namespace WebAddressbookTest
             {
                 return "";
             }
-            return row
-                .Replace(" ", "")
+            //return Regex.Replace(row, "[ -():HMB]", "") + "\r\n";
+            return row.Replace(" ", "")
                 .Replace("-", "")
                 .Replace("(", "")
-                .Replace(")", "") + "\r\n";
+                .Replace(")", "")
+                .Replace(":", "")
+                .Replace("H", "")
+                .Replace("W", "")
+                .Replace("M", "") + "\r\n";
         }
 
         public string Fax { get; set; }
@@ -169,5 +175,24 @@ namespace WebAddressbookTest
         public string Notes { get; set; }
 
         public string Id { get; set; }
+
+        public string AllDetails
+        {
+            get
+            {
+                if (allDetails != null)
+                {
+                    return allDetails;
+                }
+                else
+                {
+                    return (CleanUp(FirstName) + CleanUp(LastName) + CleanUp(Address) + CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone) + CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
+                }
+            }
+            set
+            {
+                allDetails = value;
+            }
+        }
     }
 }
