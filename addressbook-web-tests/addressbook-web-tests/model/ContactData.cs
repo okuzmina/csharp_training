@@ -191,38 +191,59 @@ namespace WebAddressbookTest
                     {
                         homePhoneRow = "H: " + homePhone + "\r\n";
                     }
-                    else homePhoneRow = "";
+                    else
+                    {
+                        homePhoneRow = "";
+                    }
 
                     if (mobilePhone != null)
                     {
                         mobilePhoneRow = "M: " + mobilePhone + "\r\n";
                     }
-                    else mobilePhoneRow = "";
+                    else
+                    {
+                        mobilePhoneRow = "";
+                    }
 
                     if (workPhone != null)
                     {
                         workPhoneRow = "W: " + homePhone + "\r\n";
                     }
-                    else workPhoneRow = "";
+                    else
+                    {
+                        workPhoneRow = "";
+                    }
 
                     string phoneRows = homePhoneRow + mobilePhoneRow + workPhoneRow;
 
                     if (email != null)
                     {
-                        string emailRow = email + "\r\n";
+                        emailRow = email + "\r\n";
+                    }
+                    else
+                    {
+                        emailRow = "";
                     }
 
                     if (email2 != null)
                     {
-                        string email2Row = email2 + "\r\n";
+                        email2Row = email2 + "\r\n";
+                    }
+                    else
+                    {
+                        email2Row = "";
                     }
 
                     if (email3 != null)
                     {
-                        string email3Row = email3 + "\r\n";
+                        email3Row = email3 + "\r\n";
                     }
-
+                    else
+                    {
+                        email3Row = "";
+                    }
                     string allEmailsRows = emailRow + email2Row + email3Row;
+
                     string emptyRow = "\r\n";
 
                     return allDetails = firstRow + secondRow + emptyRow + phoneRows + emptyRow + allEmailsRows;
