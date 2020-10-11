@@ -28,6 +28,12 @@ namespace WebAddressbookTest
         private string allPhones;
         private string allEmails;
         private string allDetails;
+        private string homePhoneRow;
+        private string mobilePhoneRow;
+        private string workPhoneRow;
+        private string emailRow;
+        private string email2Row;
+        private string email3Row;
 
         public ContactData(string firstName, string lastName)
         {
@@ -124,15 +130,7 @@ namespace WebAddressbookTest
             {
                 return "";
             }
-            //return Regex.Replace(row, "[ -():HMB]", "") + "\r\n";
-            return row.Replace(" ", "")
-                .Replace("-", "")
-                .Replace("(", "")
-                .Replace(")", "")
-                .Replace(":", "")
-                .Replace("H", "")
-                .Replace("W", "")
-                .Replace("M", "") + "\r\n";
+            return Regex.Replace(row, "[ -()]", "") + "\r\n";
         }
 
         public string Fax { get; set; }
@@ -186,7 +184,48 @@ namespace WebAddressbookTest
                 }
                 else
                 {
-                    return (CleanUp(FirstName) + CleanUp(LastName) + CleanUp(Address) + CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone) + CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
+                    string firstRow = FirstName + " " + LastName + "\r\n";
+                    string secondRow = Address + "\r\n";
+
+                    if (homePhone != null)
+                    {
+                        homePhoneRow = "H: " + homePhone + "\r\n";
+                    }
+                    else homePhoneRow = "";
+
+                    if (mobilePhone != null)
+                    {
+                        mobilePhoneRow = "M: " + mobilePhone + "\r\n";
+                    }
+                    else mobilePhoneRow = "";
+
+                    if (workPhone != null)
+                    {
+                        workPhoneRow = "W: " + homePhone + "\r\n";
+                    }
+                    else workPhoneRow = "";
+
+                    string phoneRows = homePhoneRow + mobilePhoneRow + workPhoneRow;
+
+                    if (email != null)
+                    {
+                        string emailRow = email + "\r\n";
+                    }
+
+                    if (email2 != null)
+                    {
+                        string email2Row = email2 + "\r\n";
+                    }
+
+                    if (email3 != null)
+                    {
+                        string email3Row = email3 + "\r\n";
+                    }
+
+                    string allEmailsRows = emailRow + email2Row + email3Row;
+                    string emptyRow = "\r\n";
+
+                    return allDetails = firstRow + secondRow + emptyRow + phoneRows + emptyRow + allEmailsRows;
                 }
             }
             set

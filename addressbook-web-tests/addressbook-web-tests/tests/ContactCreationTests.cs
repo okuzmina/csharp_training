@@ -10,7 +10,7 @@ namespace WebAddressbookTest
         public void ContactCreationTest()
         {
             ContactData contact = new ContactData("first", "last");
-            contact.Company = "cc";
+            contact.Address = "cc";
             contact.Email = "qwe";
             contact.MobilePhone = "123";
             List<ContactData> oldContacts = applicationManager.Contacts.GetContactList();
