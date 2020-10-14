@@ -34,6 +34,8 @@ namespace WebAddressbookTest
         private string emailRow;
         private string email2Row;
         private string email3Row;
+        private string allEmailsRows;
+        private string phoneRows;
 
         public ContactData(string firstName, string lastName)
         {
@@ -187,36 +189,36 @@ namespace WebAddressbookTest
                     string firstRow = FirstName + " " + LastName + "\r\n";
                     string secondRow = Address + "\r\n";
 
-                    if (homePhone != null)
-                    {
-                        homePhoneRow = "H: " + homePhone + "\r\n";
-                    }
-                    else
+                    if (String.IsNullOrEmpty(homePhone))
                     {
                         homePhoneRow = "";
                     }
-
-                    if (mobilePhone != null)
-                    {
-                        mobilePhoneRow = "M: " + mobilePhone + "\r\n";
-                    }
                     else
+                    {
+                        homePhoneRow = "H: " + homePhone + "\r\n";
+                    }
+
+                    if (String.IsNullOrEmpty(mobilePhone))
                     {
                         mobilePhoneRow = "";
                     }
-
-                    if (workPhone != null)
-                    {
-                        workPhoneRow = "W: " + homePhone + "\r\n";
-                    }
                     else
+                    {
+                        mobilePhoneRow = "M: " + mobilePhone + "\r\n";
+                    }
+
+                    if (String.IsNullOrEmpty(workPhone))
                     {
                         workPhoneRow = "";
                     }
+                    else
+                    {
+                        workPhoneRow = "W: " + homePhone + "\r\n";
+                    }
 
-                    string phoneRows = homePhoneRow + mobilePhoneRow + workPhoneRow;
+                    phoneRows = homePhoneRow + mobilePhoneRow + workPhoneRow;
 
-                    if (email != null)
+                    if (email != "")
                     {
                         emailRow = email + "\r\n";
                     }
@@ -225,7 +227,7 @@ namespace WebAddressbookTest
                         emailRow = "";
                     }
 
-                    if (email2 != null)
+                    if (email2 != "")
                     {
                         email2Row = email2 + "\r\n";
                     }
@@ -234,7 +236,7 @@ namespace WebAddressbookTest
                         email2Row = "";
                     }
 
-                    if (email3 != null)
+                    if (email3 != "")
                     {
                         email3Row = email3 + "\r\n";
                     }
@@ -242,7 +244,7 @@ namespace WebAddressbookTest
                     {
                         email3Row = "";
                     }
-                    string allEmailsRows = emailRow + email2Row + email3Row;
+                    allEmailsRows = emailRow + email2Row + email3Row;
 
                     string emptyRow = "\r\n";
 
