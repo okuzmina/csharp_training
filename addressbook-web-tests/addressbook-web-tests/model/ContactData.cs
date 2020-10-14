@@ -72,6 +72,11 @@ namespace WebAddressbookTest
             return LastName.GetHashCode();
         }
 
+        public override string ToString()
+        {
+            return "first name = " + FirstName + "\nlast name = " + LastName + "\naddress = " + Address;
+        }
+
         public int CompareTo(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))
