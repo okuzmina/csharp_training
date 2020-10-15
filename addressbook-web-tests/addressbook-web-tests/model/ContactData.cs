@@ -194,56 +194,56 @@ namespace WebAddressbookTest
                     string firstRow = FirstName + " " + LastName + "\r\n";
                     string secondRow = Address + "\r\n";
 
-                    if (String.IsNullOrEmpty(homePhone))
+                    if (String.IsNullOrEmpty(HomePhone))
                     {
                         homePhoneRow = "";
                     }
                     else
                     {
-                        homePhoneRow = "H: " + homePhone + "\r\n";
+                        homePhoneRow = "H: " + HomePhone + "\r\n";
                     }
 
-                    if (String.IsNullOrEmpty(mobilePhone))
+                    if (String.IsNullOrEmpty(MobilePhone))
                     {
                         mobilePhoneRow = "";
                     }
                     else
                     {
-                        mobilePhoneRow = "M: " + mobilePhone + "\r\n";
+                        mobilePhoneRow = "M: " + MobilePhone + "\r\n";
                     }
 
-                    if (String.IsNullOrEmpty(workPhone))
+                    if (String.IsNullOrEmpty(WorkPhone))
                     {
                         workPhoneRow = "";
                     }
                     else
                     {
-                        workPhoneRow = "W: " + homePhone + "\r\n";
+                        workPhoneRow = "W: " + WorkPhone + "\r\n";
                     }
 
                     phoneRows = homePhoneRow + mobilePhoneRow + workPhoneRow;
 
-                    if (email != "")
+                    if (Email != "")
                     {
-                        emailRow = email + "\r\n";
+                        emailRow = Email + "\r\n";
                     }
                     else
                     {
                         emailRow = "";
                     }
 
-                    if (email2 != "")
+                    if (Email2 != "")
                     {
-                        email2Row = email2 + "\r\n";
+                        email2Row = Email2 + "\r\n";
                     }
                     else
                     {
                         email2Row = "";
                     }
 
-                    if (email3 != "")
+                    if (Email3 != "")
                     {
-                        email3Row = email3 + "\r\n";
+                        email3Row = Email3 + "\r\n";
                     }
                     else
                     {

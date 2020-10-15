@@ -44,7 +44,7 @@ namespace WebAddressbookTest
             manager.Navigator.OpenHomePage();
             ViewContact(index);
 
-            string contactDetails = driver.FindElement(By.Id("content")).Text;
+            string contactDetails = driver.FindElement(By.Id("content")).Text + "\r\n";
             return contactDetails;
         }
 
