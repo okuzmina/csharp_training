@@ -37,6 +37,10 @@ namespace WebAddressbookTest
         private string allEmailsRows;
         private string phoneRows;
 
+        public ContactData()
+        {
+        }
+
         public ContactData(string firstName, string lastName)
         {
             FirstName = firstName;
