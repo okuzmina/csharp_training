@@ -5,26 +5,26 @@ namespace WebAddressbookTest
 {
     [TestFixture]
 
-    public class ContactRemovalTests: AuthTestBase
+    public class ContactRemovalTests: ContactTestBase
     {
         [Test]
 
         public void ContactRemovalTest()
         {
             applicationManager.Contacts.CheckExistingCreateIfNot();
-            List<ContactData> oldContacts = applicationManager.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
+            ContactData forRemoving = oldContacts[0];
 
-            applicationManager.Contacts.RemoveContactWholeProcess(0);
+            applicationManager.Contacts.RemoveById(forRemoving);
             Assert.AreEqual(oldContacts.Count - 1, applicationManager.Contacts.GetContactCount());
-            List<ContactData> newContacts = applicationManager.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();
 
-            ContactData toBeRemoved = oldContacts[0];
             oldContacts.RemoveAt(0);
             Assert.AreEqual(oldContacts, newContacts);
 
             foreach (ContactData contact in newContacts)
             {
-                Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
+                Assert.AreNotEqual(contact.Id, forRemoving.Id);
             }
         }
     }

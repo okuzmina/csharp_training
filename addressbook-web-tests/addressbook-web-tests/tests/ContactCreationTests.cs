@@ -4,11 +4,13 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using System.Linq;
+using System;
 
 namespace WebAddressbookTest
 {
     [TestFixture]
-    public class ContactCreationTests : AuthTestBase
+    public class ContactCreationTests : ContactTestBase
     {
         public static IEnumerable<ContactData> RandomContactDataProvider()
         {
@@ -52,18 +54,32 @@ namespace WebAddressbookTest
         [Test, TestCaseSource("ContactDataFromJsonFile")]
         public void ContactCreationTest(ContactData contact)
         {
-            List<ContactData> oldContacts = applicationManager.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
 
             applicationManager.Contacts.CreateContactWholeProcess(contact);
             Assert.AreEqual(oldContacts.Count + 1, applicationManager.Contacts.GetContactCount());
 
-            List<ContactData> newContacts = applicationManager.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();
 
             oldContacts.Add(contact);
             oldContacts.Sort();
             newContacts.Sort();
 
             Assert.AreEqual(oldContacts, newContacts);
+        }
+
+        [Test]
+        public void TestContactDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+            List<ContactData> fromUI = applicationManager.Contacts.GetContactList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+
+            start = DateTime.Now;
+            List<ContactData> fromDb = ContactData.GetAll();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
         }
     }
 }
