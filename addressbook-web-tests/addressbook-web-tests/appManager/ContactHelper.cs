@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace WebAddressbookTest
 {
@@ -223,6 +225,88 @@ namespace WebAddressbookTest
                 CreateContactWholeProcess(contactNew);
             }
             return this;
+        }
+
+        public void AddContactToGroup(ContactData contact, GroupData group)
+        {
+            manager.Navigator.OpenHomePage();
+            ClearGroupFilter();
+            SelectContact(contact.Id);
+            SelectGroupFromList(group.Name);
+            CommitAddingContactToGroup();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => driver.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
+        public GroupData AddContactToGroupIfNotExist(ContactData contact)
+        {
+            manager.Navigator.OpenHomePage();
+            ClearGroupFilter();
+            GroupData firstExistingGroup = GroupData.GetAll()[2];
+            SelectContact(contact.Id);
+            SelectGroupFromList(firstExistingGroup.Name);
+            CommitAddingContactToGroup();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => driver.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+            return firstExistingGroup;
+        }
+
+        public void CommitAddingContactToGroup()
+        {
+            driver.FindElement(By.Name("add")).Click();
+        }
+
+        public void SelectGroupFromList(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+        }
+
+        public void ClearGroupFilter()
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+        }
+
+        public void RemoveFirstContactFromGroup(ContactData contact)
+        {
+            manager.Navigator.OpenHomePage();
+            GroupData group = FindFirstGroupWithContacts(contact);
+            FilterContactsByGroup(group.Name);
+            SelectFirstContact();
+            CommitRemovingContact();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => driver.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
+        public void FilterContactsByGroup(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(name);
+        }
+
+        public void CommitRemovingContact()
+        {
+            driver.FindElement(By.Name("remove")).Click();
+        }
+
+        public void SelectFirstContact()
+        {
+            driver.FindElement(By.XPath("(//input[@name= 'selected[]'])[1]")).Click();
+        }
+
+        public GroupData FindFirstGroupWithContacts(ContactData contact)
+        {
+            ClearGroupFilter();
+
+            for (int i = 2; i < GroupData.GetAll().Count(); i++)
+            {
+                GroupData groupExisting = GroupData.GetAll()[i];
+                List<ContactData> availableContacts = groupExisting.GetContacts();
+                if (availableContacts.Count > 0)
+                {
+                    return  groupExisting;
+                }
+            }
+            GroupData groupExisiting = AddContactToGroupIfNotExist(contact);
+            return groupExisiting;
         }
     }
 }
