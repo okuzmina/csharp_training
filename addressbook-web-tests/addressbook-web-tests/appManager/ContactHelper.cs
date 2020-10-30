@@ -248,6 +248,7 @@ namespace WebAddressbookTest
             CommitAddingContactToGroup();
             new WebDriverWait(driver, TimeSpan.FromSeconds(10))
                 .Until(d => driver.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+            manager.Navigator.OpenHomePage();
             return firstExistingGroup;
         }
 
@@ -296,7 +297,7 @@ namespace WebAddressbookTest
         {
             ClearGroupFilter();
 
-            for (int i = 2; i < GroupData.GetAll().Count(); i++)
+            for (int i = 0; i < GroupData.GetAll().Count(); i++)
             {
                 GroupData groupExisting = GroupData.GetAll()[i];
                 List<ContactData> availableContacts = groupExisting.GetContacts();
