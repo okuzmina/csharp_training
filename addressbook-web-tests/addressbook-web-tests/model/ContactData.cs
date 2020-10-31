@@ -316,5 +316,17 @@ namespace WebAddressbookTest
                 return (from c in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
             }
         }
+
+        public static List<ContactData> GetContactsWithoutGroup()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from c in db.Contacts
+                        from gcr in db.GCR.Where(p =>
+                        p.ContactId == c.Id &&
+                        p.GroupId.Count() == 0)
+                        select c).Distinct().ToList();
+            }
+        }
     }
 }
