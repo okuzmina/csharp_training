@@ -12,9 +12,14 @@ namespace WebAddressbookTest
         [Test]
         public void TestAddingContactToGroup()
         {
+            applicationManager.Contacts.CheckExistingCreateIfNot();
+            applicationManager.Groups.CheckExistngCreateIfNot();
+
             GroupData group = GroupData.GetAll()[0];
             List<ContactData> oldList = group.GetContacts();
             ContactData contact = ContactData.GetAll().Except(oldList).First();
+
+            applicationManager.Contacts.CheckGroupCountCreateContactIfAll(contact);
 
             applicationManager.Contacts.AddContactToGroup(contact, group);
 

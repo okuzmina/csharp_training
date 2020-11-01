@@ -11,7 +11,12 @@ namespace WebAddressbookTest
     {
         [Test]
         public void TestRemovingContactFromGroup()
-        { 
+        {
+            applicationManager.Contacts.CheckExistingCreateIfNot();
+            applicationManager.Groups.CheckExistngCreateIfNot();
+
+            applicationManager.Contacts.CheckForContactsInGroupsAddIfNot();
+
             List<ContactData> oldList = ContactData.GetContactsWithoutGroup();
 
             ContactData contact = ContactData.GetAll().Except(oldList).First();

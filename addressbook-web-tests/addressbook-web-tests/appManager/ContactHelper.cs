@@ -309,5 +309,46 @@ namespace WebAddressbookTest
             GroupData groupExisiting = AddContactToGroupIfNotExist(contact);
             return groupExisiting;
         }
+
+        public ContactData CheckGroupCountCreateContactIfAll(ContactData contact)
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                int count = (from c in db.Contacts
+                             from g in db.Groups
+                             from gcr in db.GCR.Where(p =>
+                             p.ContactId == contact.Id)
+                             select g).Distinct().Count();
+
+                int allGroups = GroupData.GetAll().Count();
+
+                if (count == allGroups)
+                {
+                    ContactData contactAdded = new ContactData("pre-created", "pre-created");
+                    CreateContactWholeProcess(contactAdded);
+                    return contactAdded;
+                }
+
+                return contact;
+            }
+        }
+
+        public void CheckForContactsInGroupsAddIfNot()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                int count = (from c in db.Contacts
+                             from gcr in db.GCR.Where(p =>
+                             p.ContactId == c.Id)
+                             select c).Distinct().Count();
+
+                if (count == 0)
+                {
+                    ContactData contactUpdated = ContactData.GetAll()[0];
+                    GroupData group = GroupData.GetAll()[0];
+                    AddContactToGroup(contactUpdated, group);
+                }
+            }
+        }
     }
 }
